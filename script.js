@@ -1,10 +1,8 @@
 import { homeView, gameView, gameoverView } from "./views.js";
 import { game } from "./game.js"
 
-const BASE_PATH_GITHUB = '/odin_tictactoe';
 
 const mainElement = document.querySelector(".main-view");
-
 function homeRoute() {
 	mainElement.innerHTML = homeView();
 
@@ -60,7 +58,7 @@ function gameoverRoute() {
 
 	document.querySelector(".playagain").addEventListener("click", () => {
 		game.resetGame();
-		window.history.back();
+		route("/");
 	});
 }
 
@@ -69,12 +67,13 @@ function notFoundRoute() {
 }
 
 function route(path) {
-	window.history.pushState({}, "", BASE_PATH_GITHUB + path);
-	handleLocation();
+	window.location.hash = path;
+	// window.history.pushState({}, "", BASE_PATH_GITHUB + path);
+	// handleLocation();
 }
 
 function handleLocation() {
-	const path = window.location.pathname.replace(BASE_PATH_GITHUB, '') || '/';
+	const path = window.location.hash.slice(1) || '/';
 	switch(path) {
 		case "/": homeRoute(); break;
 		case "/game": gameRoute(); break;
