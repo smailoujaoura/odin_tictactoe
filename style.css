@@ -189,3 +189,15 @@ input[type="text"]::placeholder {
 	font-weight: 900;
 	text-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
 }
+
+
+.players-info {
+	font-size: 20px;
+	font-weight: 800;
+}
+
+.turn-indicator {
+	font-size: 20px;
+	font-weight: 800;
+	color: greenyellow;
+}
