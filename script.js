@@ -54,6 +54,13 @@ function gameRoute() {
 }
 
 function gameoverRoute() {
+	const winner = game.checkWinner();
+
+	if (winner === undefined) {
+		route("/");
+		return;
+	}
+
 	mainElement.innerHTML = gameoverView(game.checkWinner());
 
 	document.querySelector(".playagain").addEventListener("click", () => {
@@ -68,8 +75,6 @@ function notFoundRoute() {
 
 function route(path) {
 	window.location.hash = path;
-	// window.history.pushState({}, "", BASE_PATH_GITHUB + path);
-	// handleLocation();
 }
 
 function handleLocation() {
@@ -81,7 +86,7 @@ function handleLocation() {
 		default: notFoundRoute();
 	}
 };
-window.onpopstate = handleLocation;
+window.onhashchange = handleLocation;
 window.onload = handleLocation;
 
 document.addEventListener("click", (e) => {
